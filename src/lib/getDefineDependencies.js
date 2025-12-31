@@ -13,11 +13,11 @@ function getFunctionParameters (node) {
   })
 }
 
-module.exports = (node) => {
-  if (!isDefineWithArrayAndCallback(node)) { return [] }
+module.exports = (node, body) => {
+  if (!isDefineWithArrayAndCallback(node, body)) { return [] }
   const length = node.arguments.length
   const elements = getArrayExpressionValues(node.arguments[length - 2])
-  const params = getFunctionParameters(node.arguments[length - 1])
+  const params = getFunctionParameters(node.arguments[length - 1].type === "Identifier" ? body[0].expression.arguments[body[0].expression.arguments.length - 1] : node.arguments[length - 1])
   return elements.map((element, index) => {
     return {
       element: element,

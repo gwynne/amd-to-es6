@@ -1,6 +1,9 @@
-module.exports = (node) => {
+const isDefineWithReferenceToWrappingIIFEFunction = require('../lib/isDefineWithReferenceToWrappingIIFEFunction')
+
+module.exports = (node, body) => {
   const length = node?.arguments?.length
-  return length >= 2 &&
+  return isDefineWithReferenceToWrappingIIFEFunction(node, body) || (
+        length >= 2 &&
         node &&
         node.callee &&
         node.callee.type === 'Identifier' &&
@@ -10,4 +13,5 @@ module.exports = (node) => {
           node.arguments[length - 1].type === 'FunctionExpression' ||
             node.arguments[length - 1].type === 'ArrowFunctionExpression'
         )
+      )
 }

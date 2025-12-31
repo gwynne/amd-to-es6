@@ -130,7 +130,7 @@ class Module extends AbstractSyntaxTree {
 
   wrapMultipleReturns (node) {
     if (this.hasExportsDefault()) return
-    const args = getDefineCallbackArguments(node)
+    const args = getDefineCallbackArguments(node, this._tree.body)
     if (args.body.type === 'BlockStatement') {
       const types = args.body.body.map(leaf => leaf.type)
       if (!types.includes('ReturnStatement') && types.includes('IfStatement')) {
