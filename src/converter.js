@@ -1,9 +1,7 @@
-'use strict'
-
 const Module = require('./class/Module')
 const { convertDynamicImport, revertDynamicImportConversion } = require('./utilities/dynamic-import')
 
-module.exports = function (source, options) {
+module.exports = (source, options) => {
   options = options || {}
   if (source.indexOf('define') === -1) { return source }
   source = convertDynamicImport(source)

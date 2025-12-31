@@ -1,5 +1,3 @@
-'use strict'
-
 const isDefineWithFunctionExpression = require('./isDefineWithFunctionExpression')
 const isDefineWithArrayAndCallback = require('./isDefineWithArrayAndCallback')
 

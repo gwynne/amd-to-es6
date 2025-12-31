@@ -1,5 +1,3 @@
-'use strict'
-
 const AbstractSyntaxTree = require('abstract-syntax-tree')
 const isDefineWithObjectExpression = require('../lib/isDefineWithObjectExpression')
 const getDefineCallbackArguments = require('../lib/getDefineCallbackArguments')
@@ -68,7 +66,7 @@ class Module extends AbstractSyntaxTree {
 
   removeTrueIfStatements () {
     let cid = 1
-    this.walk(function (node, parent) {
+    this.walk((node, parent) => {
       node.cid = cid
       cid += 1
       if (node.type === 'IfStatement' && node.test.value === true) {
@@ -142,14 +140,14 @@ class Module extends AbstractSyntaxTree {
   }
 
   getBody (node) {
-    const args = getDefineCallbackArguments(node)
+    const args = getDefineCallbackArguments(node, this._tree.body)
     if (args.body.type === 'BlockStatement') {
       return args.body.body
     }
     return [{ type: 'ExportDefaultDeclaration', declaration: args.body }]
   }
 
-  getCode (body, options) {
+  getCode (body, _options) {
     return body.map(node => {
       if (isReturnStatement(node)) {
         return changeReturnToExportDefaultDeclaration(node)

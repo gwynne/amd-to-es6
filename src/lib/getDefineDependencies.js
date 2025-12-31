@@ -1,5 +1,3 @@
-'use strict'
-
 const isDefineWithArrayAndCallback = require('./isDefineWithArrayAndCallback')
 
 function getArrayExpressionValues (node) {
@@ -15,7 +13,7 @@ function getFunctionParameters (node) {
   })
 }
 
-module.exports = function (node) {
+module.exports = (node) => {
   if (!isDefineWithArrayAndCallback(node)) { return [] }
   const length = node.arguments.length
   const elements = getArrayExpressionValues(node.arguments[length - 2])

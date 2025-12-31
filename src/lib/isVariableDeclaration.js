@@ -1,5 +1,1 @@
-'use strict'
-
-module.exports = function (node) {
-  return node.type === 'VariableDeclaration'
-}
+module.exports = (node) => node.type === 'VariableDeclaration'

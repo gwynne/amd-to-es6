@@ -1,5 +1,3 @@
-'use strict'
-
 const AbstractSyntaxTree = require('abstract-syntax-tree')
 const utils = require('pure-utilities')
 

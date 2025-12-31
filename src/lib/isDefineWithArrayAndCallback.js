@@ -1,7 +1,5 @@
-'use strict'
-
-module.exports = function (node) {
-  const length = node && node.arguments && node.arguments.length
+module.exports = (node) => {
+  const length = node?.arguments?.length
   return length >= 2 &&
         node &&
         node.callee &&

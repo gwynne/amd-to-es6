@@ -2,8 +2,8 @@
 
 const { Command } = require("commander");
 const program = new Command();
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
 const glob = require("glob");
 const mkdirp = require("mkdirp");
 const amdtoes6 = require("../index");
@@ -35,7 +35,7 @@ if (settings.quotes && !/^(single|double|auto)$/i.test(settings.quotes)) {
 }
 
 function replaceSuffix(filename, suffix) {
-  return suffix ? filename.replace(/\.js$/, "." + suffix) : filename;
+  return suffix ? filename.replace(/\.js$/, `.${suffix}`) : filename;
 }
 
 function getGlob(options) {
@@ -61,7 +61,7 @@ function convertFile(file, options) {
 }
 
 function convertFiles(files, options) {
-  files.forEach(function (file) {
+  files.forEach((file) => {
     const filepath = path.join(options.src, file);
     const content = fs.readFileSync(filepath, "utf8");
     const compiled = amdtoes6(content, options);

@@ -1,5 +1,3 @@
-'use strict'
-
 const AbstractSyntaxTree = require('abstract-syntax-tree')
 const isDefineWithExports = require('../lib/isDefineWithExports')
 const isExportsMemberExpression = require('../lib/isExportsMemberExpression')

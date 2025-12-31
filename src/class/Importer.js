@@ -1,5 +1,3 @@
-'use strict'
-
 const AbstractSyntaxTree = require('abstract-syntax-tree')
 const isDefineWithDependencies = require('../lib/isDefineWithDependencies')
 const getDefineDependencies = require('../lib/getDefineDependencies')
@@ -56,7 +54,7 @@ module.exports = class Importer extends AbstractSyntaxTree {
 
   getVariableDeclaratorRequire (node) {
     const param = node.id.type === 'ObjectPattern' ? node.id : node.id.name
-    const element = node.init && node.init.arguments && node.init.arguments[0].value
+    const element = node.init?.arguments?.[0].value
     return getImportDeclaration(element, param)
   }
 
@@ -66,7 +64,7 @@ module.exports = class Importer extends AbstractSyntaxTree {
     while (expression.object && expression.object.type === 'MemberExpression') {
       expression = expression.object
     }
-    const element = expression && expression.object && expression.object.arguments && expression.object.arguments[0].value
+    const element = expression?.object?.arguments?.[0].value
     expression.object.replacement = {
       parent: 'object',
       child: { type: 'Identifier', name: identifier }

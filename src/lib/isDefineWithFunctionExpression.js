@@ -1,8 +1,4 @@
-'use strict'
-
-module.exports = function (node) {
-  return node &&
-    node.callee &&
+module.exports = (node) => node?.callee &&
     node.callee.type === 'Identifier' &&
     node.callee.name === 'define' &&
     node.arguments.length === 1 &&
@@ -10,4 +6,3 @@ module.exports = function (node) {
       node.arguments[0].type === 'FunctionExpression' ||
         node.arguments[0].type === 'ArrowFunctionExpression'
     )
-}

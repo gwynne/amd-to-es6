@@ -1,4 +1,4 @@
-module.exports = function (element, param) {
+module.exports = (element, param) => {
   const specifiers = []
   if (param) {
     if (param.type === 'ObjectPattern') {

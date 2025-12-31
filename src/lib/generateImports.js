@@ -1,11 +1,7 @@
-'use strict'
-
 const getImportDeclaration = require('./getImportDeclaration')
 
-module.exports = function (dependencies, options) {
-  return dependencies.filter(function (dependency) {
+module.exports = (dependencies, options) => dependencies.filter((dependency) => {
     return dependency.element !== 'require' && dependency.element !== 'exports'
-  }).map(function (dependency) {
+  }).map((dependency) => {
     return getImportDeclaration(dependency.element, dependency.param, options)
   })
-}
